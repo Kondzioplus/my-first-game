@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platformer game</title>
+   
+</head>
+<body>
+    <h1>NEW ADVENTURE</h1>
+    <canvas id="gra" width="1280px" height="580px"></canvas>
+    <style>
+        canvas{
+            background-color: aqua;
+            display: block;
+            margin: 0 auto;
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+    <script>
+        var game = document.getElementById('gra');
+        var ctx = game.getContext('2d');
+        var ImgPlatform = new Image();
+        ImgPlatform.src = 'hotdog.png'
+        var plat = [];
+        plat[0] = new Platform(0, 500, 1250, 80);
+        plat[1] = new Platform(700, 480, 100, 40);
+        plat[2] = new Platform(110, 260, 100, 40);
+        plat[3] = new Platform(250, 355, 100, 40);
+        plat[4] = new Platform(490, 425, 100, 40);
+        plat[5] = new Platform(385, 250, 250, 40);
+        plat[6] = new Platform(740, 330, 100, 40);
+        plat[7] = new Platform(660, 100, 100, 40);
+        plat[8] = new Platform(900, 400, 100, 40);
+        plat[9] = new Platform(220, 120, 100, 40);
+        plat[10] = new Platform(1000, 320, 250, 40);
+        plat[11] = new Platform(435, 170, 100, 40);
+        plat[12] = new Platform(730, 200, 100, 40);
+        plat[13] = new Platform(900, 140, 100, 40);
+    
+        var ImgDolar = new Image();
+        ImgDolar.src = 'dolar.png';
+        var dol = [];
+        dol[0] = new Dolar(150, 235, 35, 35);
+        dol[1] = new Dolar(290, 330, 35, 35);
+        dol[2] = new Dolar(255, 95, 35, 35);
+        dol[3] = new Dolar(700, 80, 35, 35);
+        dol[4] = new Dolar(935, 120, 35, 35);
+        dol[5] = new Dolar(935, 375, 35, 35);
+        dol[6] = new Dolar(760, 180, 35, 35);
+        dol[7] = new Dolar(770, 305, 35, 35);
+        dol[8] = new Dolar(740, 455, 35, 35);
+        dol[9] = new Dolar(470, 145, 35, 35);
+        dol[10] = new Dolar(530, 400, 35, 35);
+        
+        function Platform (px, py, pwidth, pheight){
+            this.x = px; 
+            this.y = py;
+            this.width = pwidth;
+            this.height = pheight;
+        }
+        function Dolar (px, py, pwidth, pheight){
+            this.x = px;
+            this.y = py;
+            this.width = pwidth;
+            this.height = pheight;
+            this.visible = true;
+        }
+        
+        function drawPlatforms(){
+            for (var i = 0;i<plat.length;i++)
+            {
+                ctx.drawImage ( ImgPlatform, plat[i].x, plat[i].y, plat[i].width, plat[i].height);
+            }
+        }
+        
+        function drawDolar(){
+            for (var i = 0;i<dol.length;i++){
+                if (dol[i].visible == true){
+                    ctx.drawImage(ImgDolar, dol[i].x, dol[i].y, dol[i].width, dol[i].height)
+                }
+            }
+        }
+        function drawing(){
+            ctx.clearRect(0, 0, game.widith, game.height);
+            drawPlatforms();
+            drawDolar();
+        }
+        setInterval(drawing, 10);
+        
+        
+       </script>
+</body>
+</html>
