@@ -77,6 +77,15 @@
         dol[9] = new Dolar(470, 145, 35, 35);
         dol[10] = new Dolar(530, 400, 35, 35);
         
+        //creating obstacle, co-ordinates
+
+        var obs = [];
+        obs[0] = new Obstacle(330, 490, 35, 40, 5, 'fire.png');
+        obs[1] = new Obstacle(500, 225, 35, 40, 10, 'dragon.png');
+        obs[2] = new Obstacle(530, 490, 35, 40, 5, 'fire.png');
+        obs[3] = new Obstacle(850, 490, 35, 40, 5, 'fire.png');
+        obs[4] = new Obstacle(1100, 295, 35, 40, 10, 'dragon.png');
+
         //description of platform
 
         function Platform (px, py, pwidth, pheight){
@@ -95,6 +104,28 @@
             this.height = pheight;
             this.visible = true;
         }
+        //description of obstacle (przeszkoda)
+
+        function Obstacle (px, py, pwidth, pheight, ptakes, pname){
+            this.x = px;
+            this.y = py;
+            this.width = pwidth;
+            this.height = pheight;
+            this.visible = true;
+            this.takes = ptakes
+            this.ImgObstacle = new Image();
+            this.ImgObstacle.src = pname;
+        }
+        
+        //obstacle creation function
+
+        function drawObstacle(){
+            for (var i = 0;i<obs.length;i++){
+                if (obs[1].visible == true){
+                    ctx.drawImage(obs[i].ImgObstacle, obs[i].x, obs[i].y, obs[i].width, obs[i].height);
+                }
+            }
+        }
         //platform creation function
 
         function drawPlatforms(){
@@ -112,12 +143,14 @@
                 }
             }
         }
+
         //clearing the drawing area
 
         function drawing(){
             ctx.clearRect(0, 0, game.widith, game.height);
             drawPlatforms();
             drawDolar();
+            drawObstacle();
         }
         //the draw function executes every 10 milliseconds
 
