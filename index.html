@@ -151,6 +151,31 @@
             drawPlatforms();
             drawDolar();
             drawObstacle();
+            ctx.drawImage(ImgHero, xHero, yHero, widthHero, heightHero);
+            gravity();
+        }
+        //Creating a Hero
+        var ImgHero = new Image();
+        ImgHero.src = 'angel.png'
+        var xHero = 150;
+        var yHero = 480;
+        var widthHero = 50;
+        var heightHero = 50;
+        var hp = 100;
+
+        //Creating gravity function
+        var dy = 0;
+        function gravity(){
+            dy = 0;
+            for (var i=0; i<plat.length; i++){
+                if(yHero + heightHero > plat[i].y &&
+                yHero + 0,8*heightHero < plat[i].y &&
+                xHero + widthHero/2 > plat[i].x &&
+                xHero + widthHero/2 < plat[i].x + plat[i].widith){
+                    dy = 0;
+                }
+            }
+            yHero = yHero + dy;
         }
         //the draw function executes every 10 milliseconds
 
